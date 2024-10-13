@@ -1,0 +1,42 @@
+@if (recipe) {
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">{{ recipe.title }}</h1>
+
+    <div class="mb-8">
+      <img [src]="recipe.img" [alt]="recipe.title" class="w-full h-64 object-cover rounded-lg shadow-md">
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ingredientes</h2>
+        <ul class="list-disc list-inside space-y-2">
+          @for (ingredient of recipe.ingredients; track ingredient) {
+            <li class="text-gray-700">{{ ingredient }}</li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Instrucciones</h2>
+        <ol class="list-decimal list-inside space-y-4">
+          @for (instruction of recipe.instructions; track instruction) {
+            <li class="text-gray-700">{{ instruction }}</li>
+          }
+        </ol>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <button (click)="goBack()" class="bg-yellow-500 text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300">
+        Volver a recetas
+      </button>
+    </div>
+  </div>
+} @else {
+  <div class="container mx-auto px-4 py-8 text-center">
+    <p class="text-2xl text-gray-800">Receta no encontrada</p>
+    <button (click)="goBack()" class="bg-yellow-500 text-white px-6 py-3 rounded-full hover:bg-yellow-600 transition duration-300">
+      Volver a recetas
+    </button>
+  </div>
+}
